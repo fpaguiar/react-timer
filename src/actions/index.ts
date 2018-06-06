@@ -1,10 +1,10 @@
 import { IAction } from '../interfaces';
 import { START_COUNTDOWN, UPDATE_COUNT_VALUE } from './types';
 
-export const startCountDown = (start: boolean): IAction => {
+export const startCountDown = (countDownStarted: boolean): IAction => {
     return {
         payload: {
-            start
+            countDownStarted
         },
         type: START_COUNTDOWN
     };

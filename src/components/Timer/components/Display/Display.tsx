@@ -1,9 +1,11 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { updateCountValue } from '../../../../actions';
+import { startCountDown, updateCountValue } from '../../../../actions';
 
 interface IProps {
     countValue: number,
+    countDownStarted: boolean,
+    startCountDown: any,
     updateCountValue: any
 };
 
@@ -14,10 +16,20 @@ class Display extends React.Component<IProps> {
         this.handleCountValueChange = this.handleCountValueChange.bind(this);
     }
 
+    public componentDidUpdate() {
+        if (this.props.countDownStarted && this.props.countValue > 0) {
+            setTimeout(() => {
+                this.props.updateCountValue(this.props.countValue - 1);
+            }, 1000);
+        } else {
+            this.props.startCountDown(false);
+        }
+    }
+
     public render() {
         return (
             <div className="field">
-                <input type="text" className="input" value={this.props.countValue || 0} onChange={this.handleCountValueChange}/>
+                <input type="text" className="input" value={this.props.countValue} onChange={this.handleCountValueChange}/>
             </div>
         );
     }
@@ -31,4 +43,4 @@ function mapStateToProps(state: any) {
     return state;
 }
 
-export default connect(mapStateToProps, { updateCountValue })(Display);
+export default connect(mapStateToProps, { startCountDown, updateCountValue })(Display);

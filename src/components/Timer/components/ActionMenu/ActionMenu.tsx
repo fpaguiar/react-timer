@@ -1,11 +1,25 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
+import { startCountDown,  } from './../../../../actions';
 
-class ActionMenu extends React.Component {
+interface IProps {
+    startCountDown: (x: boolean) => object
+    stopCountDown: () => void
+};
+
+class ActionMenu extends React.Component<IProps> {
+    constructor(props: any) {
+        super(props);
+
+        this.handleStartCountDown = this.handleStartCountDown.bind(this);
+        this.handlePauseCountDown = this.handlePauseCountDown.bind(this);
+    }
+    
     public render() {
         return (
             <div className="field has-addons">
                 <p className="control">
-                    <button className="button is-primary">
+                    <button className="button is-primary" onClick={this.handleStartCountDown}>
                         <span className="icon">
                             <i className="fas fa-play" />
                         </span>
@@ -13,7 +27,7 @@ class ActionMenu extends React.Component {
                     </button>
                 </p>
                 <p className="control">
-                    <button className="button">
+                    <button className="button" onClick={this.handlePauseCountDown}>
                         <span className="icon">
                             <i className="fas fa-pause" />
                         </span>
@@ -31,6 +45,18 @@ class ActionMenu extends React.Component {
             </div>
         );
     }
+
+    private handleStartCountDown() {
+        return this.props.startCountDown(true);
+    }
+
+    private handlePauseCountDown() {
+        return this.props.startCountDown(false);
+    }
 }
 
-export default ActionMenu;
+function mapStateToProps(state: any) {
+    return state;
+}
+
+export default connect(mapStateToProps, {startCountDown})(ActionMenu);
