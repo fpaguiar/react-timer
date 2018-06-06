@@ -8,7 +8,13 @@ import './index.css';
 import Reducer from './reducers';
 import registerServiceWorker from './registerServiceWorker';
 
-const store = Redux.createStore(Reducer, {});
+const initialState: object  = {
+  countValue: 0
+};
+
+/* tslint:disable */
+const store = Redux.createStore(Reducer, initialState, window['__REDUX_DEVTOOLS_EXTENSION__'] && window['__REDUX_DEVTOOLS_EXTENSION__']());
+/* tslint:enable */
 
 ReactDOM.render(
   <Provider store={store}><App /></Provider>,
