@@ -1,0 +1,42 @@
+.control {
+    display: flex;
+}
+
+.control .button {
+    height: 70px;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    border-right: 1px solid black;
+    border-top: 1px solid black;
+    color: #EEE;
+    font-size: 1.5rem;
+    transition: font-size 0.2s;
+}
+
+.control .button:last-child {
+    border-right: none;
+}
+
+.control .button:hover {
+    cursor: pointer;
+    transition: font-size 0.2s;
+    font-size: 2rem;
+}
+
+.control .button:active {
+    color: #DDD;
+}
+
+.button-start {
+    background-color: #0B6E4F;
+}
+
+.button-stop {
+    background-color: #721817;
+}
+
+.button-reset {
+    background-color: #FA9F42;
+}

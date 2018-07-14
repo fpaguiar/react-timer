@@ -1,10 +1,12 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { startCountDown,  } from './../../../../actions';
+import { startCountDown, updateCountValue } from './../../../../actions';
+
+import './ActionMenu.css';
 
 interface IProps {
     startCountDown: (x: boolean) => object
-    stopCountDown: () => void
+    updateCountValue: (x: number) => object
 };
 
 class ActionMenu extends React.Component<IProps> {
@@ -13,35 +15,21 @@ class ActionMenu extends React.Component<IProps> {
 
         this.handleStartCountDown = this.handleStartCountDown.bind(this);
         this.handlePauseCountDown = this.handlePauseCountDown.bind(this);
+        this.handleUpdateCountValue = this.handleUpdateCountValue.bind(this);
     }
-    
+
     public render() {
         return (
-            <div className="field has-addons">
-                <p className="control">
-                    <button className="button is-primary" onClick={this.handleStartCountDown}>
-                        <span className="icon">
-                            <i className="fas fa-play" />
-                        </span>
-                        <span>Start</span>
-                    </button>
-                </p>
-                <p className="control">
-                    <button className="button" onClick={this.handlePauseCountDown}>
-                        <span className="icon">
-                            <i className="fas fa-pause" />
-                        </span>
-                        <span>Pause</span>
-                    </button>
-                </p>
-                <p className="control">
-                    <button className="button is-info">
-                        <span className="icon">
-                            <i className="fas fa-sync" />
-                        </span>
-                        <span>Reset</span>
-                    </button>
-                </p>
+            <div className="control">
+                <div className="button button-start" onClick={this.handleStartCountDown}>
+                    <i className="fas fa-play" />
+                </div>
+                <div className="button button-stop" onClick={this.handlePauseCountDown}>
+                    <i className="fas fa-stop" />
+                </div>
+                <div className="button button-reset" onClick={this.handleUpdateCountValue}>
+                    <i className="fas fa-sync-alt" />
+                </div>
             </div>
         );
     }
@@ -53,10 +41,14 @@ class ActionMenu extends React.Component<IProps> {
     private handlePauseCountDown() {
         return this.props.startCountDown(false);
     }
+
+    private handleUpdateCountValue() {
+        return this.props.updateCountValue(0);
+    }
 }
 
 function mapStateToProps(state: any) {
     return state;
 }
 
-export default connect(mapStateToProps, {startCountDown})(ActionMenu);
+export default connect(mapStateToProps, { startCountDown, updateCountValue })(ActionMenu);

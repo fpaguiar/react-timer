@@ -2,6 +2,8 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { startCountDown, updateCountValue } from '../../../../actions';
 
+import './Display.css';
+
 interface IProps {
     countValue: number,
     countDownStarted: boolean,
@@ -19,7 +21,7 @@ class Display extends React.Component<IProps> {
     public componentDidUpdate() {
         if (this.props.countDownStarted && this.props.countValue > 0) {
             setTimeout(() => {
-                this.props.updateCountValue(this.props.countValue - 1);
+                return this.props.countDownStarted && this.props.updateCountValue(this.props.countValue - 1);
             }, 1000);
         } else {
             this.props.startCountDown(false);
@@ -28,7 +30,7 @@ class Display extends React.Component<IProps> {
 
     public render() {
         return (
-            <div className="field">
+            <div className="display">
                 <input type="text" className="input" value={this.props.countValue} onChange={this.handleCountValueChange}/>
             </div>
         );

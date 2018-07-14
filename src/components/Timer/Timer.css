@@ -1,0 +1,12 @@
+.timer {
+    width: 250px;
+    height: 200px;
+    border: 10px solid #2B4162;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10%;
+    overflow: hidden;
+    box-shadow: 3px 3px 5px #666;
+    margin: 10px auto;
+}

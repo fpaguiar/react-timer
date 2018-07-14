@@ -1,0 +1,17 @@
+.display {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    background-color: #E0E0E2;
+}
+
+.display input {
+    display: block;
+    height: 60px;
+    width: 80%;
+    font-size: 3rem;
+    margin: 0 auto;
+    text-align: center;
+    border: none;
+    background: none;
+}

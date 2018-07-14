@@ -2,14 +2,14 @@ import * as React from 'react';
 import ActionMenu from './components/ActionMenu/ActionMenu';
 import Display from './components/Display/Display';
 
+import './Timer.css';
+
 class Timer extends React.Component {
     public render() {
         return (
-            <div className="container">
-                <div className="box">
-                    <div className="columns"><Display /></div>
-                    <div className="columns"><ActionMenu /></div>
-                </div>
+            <div className="timer">
+                <Display />
+                <ActionMenu />
             </div>
         );
     }
