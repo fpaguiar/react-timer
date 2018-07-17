@@ -22,7 +22,6 @@ class Display extends React.Component<IProps> {
 
     public componentDidUpdate() {
         const currentValue = moment(this.props.countValue, 'HH:mm:ss');
-
         if (this.props.countDownStarted && currentValue.isValid()) {
             setTimeout(() => {
                 return this.props.countDownStarted && this.props.updateCountValue(currentValue.subtract(1, 'second'));
