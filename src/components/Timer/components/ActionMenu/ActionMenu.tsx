@@ -5,8 +5,9 @@ import { startCountDown, updateCountValue } from './../../../../actions';
 import './ActionMenu.css';
 
 interface IProps {
-    startCountDown: (x: boolean) => object
-    updateCountValue: (x: number) => object
+    startCountDown: (x: boolean) => object,
+    updateCountValue: () => object,
+    countDownStarted: boolean
 };
 
 class ActionMenu extends React.Component<IProps> {
@@ -27,7 +28,7 @@ class ActionMenu extends React.Component<IProps> {
                 <div className="button button-stop" onClick={this.handlePauseCountDown}>
                     <i className="fas fa-stop" />
                 </div>
-                <div className="button button-reset" onClick={this.handleUpdateCountValue}>
+                <div className={`button button-reset ${this.props.countDownStarted?'disabled':''}`} onClick={this.handleUpdateCountValue}>
                     <i className="fas fa-sync-alt" />
                 </div>
             </div>
@@ -43,7 +44,7 @@ class ActionMenu extends React.Component<IProps> {
     }
 
     private handleUpdateCountValue() {
-        return this.props.updateCountValue(0);
+        return !this.props.countDownStarted && this.props.updateCountValue();
     }
 }
 
