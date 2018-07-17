@@ -1,11 +1,13 @@
+import * as moment from 'moment';
 import * as React from 'react';
+import InputMask from 'react-input-mask';
 import { connect } from 'react-redux';
 import { startCountDown, updateCountValue } from '../../../../actions';
 
 import './Display.css';
 
 interface IProps {
-    countValue: number,
+    countValue: any,
     countDownStarted: boolean,
     startCountDown: any,
     updateCountValue: any
@@ -19,9 +21,11 @@ class Display extends React.Component<IProps> {
     }
 
     public componentDidUpdate() {
-        if (this.props.countDownStarted && this.props.countValue > 0) {
+        const currentValue = moment(this.props.countValue, 'HH:mm:ss');
+        
+        if (this.props.countDownStarted && currentValue.isValid()) {
             setTimeout(() => {
-                return this.props.countDownStarted && this.props.updateCountValue(this.props.countValue - 1);
+                return this.props.countDownStarted && this.props.updateCountValue(currentValue.subtract(1, 'second'));
             }, 1000);
         } else {
             this.props.startCountDown(false);
@@ -29,9 +33,11 @@ class Display extends React.Component<IProps> {
     }
 
     public render() {
+        const formattedValue = this.props.countValue.format('HH:mm:ss');
         return (
             <div className="display">
-                <input type="text" className="input" value={this.props.countValue} onChange={this.handleCountValueChange}/>
+                <InputMask mask="99:99:99" maskChar="_" className="input" value={formattedValue} onChange={this.handleCountValueChange} />
+                {/* <input type="text" className="input" value={this.props.countValue} onChange={this.handleCountValueChange}/> */}
             </div>
         );
     }

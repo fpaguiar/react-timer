@@ -1,3 +1,4 @@
+import * as moment from 'moment';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
@@ -8,7 +9,7 @@ import Reducer from './reducers';
 import registerServiceWorker from './registerServiceWorker';
 
 const initialState: object  = {
-  countValue: 0
+  countValue: moment('00:00:00', 'HH:mm:ss')
 };
 
 /* tslint:disable */

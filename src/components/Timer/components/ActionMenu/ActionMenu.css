@@ -40,3 +40,7 @@
 .button-reset {
     background-color: #FA9F42;
 }
+
+.button-reset.disabled {
+    background-color: #b09e8d;
+}
